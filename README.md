@@ -30,7 +30,7 @@ To disable it (e.g., for headless or server environments), pass the option: `nog
 
 To use **StriderLoader** in Minecraft, you have two options:
 
-- Use the official **StriderLoader** installer (recommended for simplicity).
+- **(NEEDS JAVA 11+)** Use the official **StriderLoader** installer (recommended for simplicity) downloadable from [my Maven repository](https://maven.nozyx.dev/dev/nozyx/strider/striderinstaller/).
 - Or download the full **StriderLoader** JAR (`striderloader-all`) from [my Maven repository](https://maven.nozyx.dev/dev/nozyx/strider/striderloader/), then add the following JVM option to your Minecraft client version JSON or your server launch arguments:
 
   `-javaagent:<path to striderloader-all>=mcVersion=<minecraft version>,mcSide=client|server`

@@ -10,10 +10,19 @@ package dev.nozyx.strider.loader.api;
  * </p>
  */
 public interface IGameTransformer {
-
     /**
      * Registers a method injection via ByteBuddy Advice.
      * 
+     * @param className the fully qualified name of the target class
+     * @param methodName the name of the method to inject into
+     * @param methodDescriptor the JVM descriptor of the method to inject into
+     * @param adviceClass the class containing the advice methods, following ByteBuddy Advice conventions
+     */
+    void registerMethodInjection(String className, String methodName, String methodDescriptor, Class<?> adviceClass);
+
+    /**
+     * Registers a method injection via ByteBuddy Advice.
+     *
      * @param className the fully qualified name of the target class
      * @param methodName the name of the method to inject into
      * @param adviceClass the class containing the advice methods, following ByteBuddy Advice conventions
@@ -23,6 +32,16 @@ public interface IGameTransformer {
     /**
      * Registers a method replacement via ByteBuddy MethodDelegation.
      * 
+     * @param className the fully qualified name of the target class
+     * @param methodName the name of the method to replace
+     * @param methodDescriptor the JVM descriptor of the method to replace
+     * @param methodDelegationClass the class providing the replacement method, following ByteBuddy MethodDelegation conventions
+     */
+    void registerMethodReplacement(String className, String methodName, String methodDescriptor, Class<?> methodDelegationClass);
+
+    /**
+     * Registers a method replacement via ByteBuddy MethodDelegation.
+     *
      * @param className the fully qualified name of the target class
      * @param methodName the name of the method to replace
      * @param methodDelegationClass the class providing the replacement method, following ByteBuddy MethodDelegation conventions
@@ -82,4 +101,96 @@ public interface IGameTransformer {
      * @param newValue the new value to set
      */
     void registerFieldReplacement(String className, String fieldName, double newValue);
+
+    /**
+     * Registers a method injection via ByteBuddy Advice.
+     *
+     * @param clazz the Class object of the target class
+     * @param methodName the name of the method to inject into
+     * @param methodDescriptor the JVM descriptor of the method to inject into
+     * @param adviceClass the class containing the advice methods, following ByteBuddy Advice conventions
+     */
+    void registerMethodInjection(Class<?> clazz, String methodName, String methodDescriptor, Class<?> adviceClass);
+
+    /**
+     * Registers a method injection via ByteBuddy Advice.
+     *
+     * @param clazz the Class object of the target class
+     * @param methodName the name of the method to inject into
+     * @param adviceClass the class containing the advice methods, following ByteBuddy Advice conventions
+     */
+    void registerMethodInjection(Class<?> clazz, String methodName, Class<?> adviceClass);
+
+    /**
+     * Registers a method replacement via ByteBuddy MethodDelegation.
+     *
+     * @param clazz the Class object of the target class
+     * @param methodName the name of the method to replace
+     * @param methodDescriptor the JVM descriptor of the method to replace
+     * @param methodDelegationClass the class providing the replacement method, following ByteBuddy MethodDelegation conventions
+     */
+    void registerMethodReplacement(Class<?> clazz, String methodName, String methodDescriptor, Class<?> methodDelegationClass);
+
+    /**
+     * Registers a method replacement via ByteBuddy MethodDelegation.
+     *
+     * @param clazz the Class object of the target class
+     * @param methodName the name of the method to replace
+     * @param methodDelegationClass the class providing the replacement method, following ByteBuddy MethodDelegation conventions
+     */
+    void registerMethodReplacement(Class<?> clazz, String methodName, Class<?> methodDelegationClass);
+
+    /**
+     * Registers a replacement for a field of type Object.
+     *
+     * @param clazz the Class object of the target class
+     * @param fieldName the name of the field to replace
+     * @param newValue the new value to set
+     */
+    void registerFieldReplacement(Class<?> clazz, String fieldName, String newValue);
+
+    /**
+     * Registers a replacement for a field of type boolean.
+     *
+     * @param clazz the Class object of the target class
+     * @param fieldName the name of the field to replace
+     * @param newValue the new value to set
+     */
+    void registerFieldReplacement(Class<?> clazz, String fieldName, boolean newValue);
+
+    /**
+     * Registers a replacement for a field of type int.
+     *
+     * @param clazz the Class object of the target class
+     * @param fieldName the name of the field to replace
+     * @param newValue the new value to set
+     */
+    void registerFieldReplacement(Class<?> clazz, String fieldName, int newValue);
+
+    /**
+     * Registers a replacement for a field of type long.
+     *
+     * @param clazz the Class object of the target class
+     * @param fieldName the name of the field to replace
+     * @param newValue the new value to set
+     */
+    void registerFieldReplacement(Class<?> clazz, String fieldName, long newValue);
+
+    /**
+     * Registers a replacement for a field of type float.
+     *
+     * @param clazz the Class object of the target class
+     * @param fieldName the name of the field to replace
+     * @param newValue the new value to set
+     */
+    void registerFieldReplacement(Class<?> clazz, String fieldName, float newValue);
+
+    /**
+     * Registers a replacement for a field of type double.
+     *
+     * @param clazz the Class object of the target class
+     * @param fieldName the name of the field to replace
+     * @param newValue the new value to set
+     */
+    void registerFieldReplacement(Class<?> clazz, String fieldName, double newValue);
 }

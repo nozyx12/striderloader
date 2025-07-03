@@ -9,7 +9,7 @@ import java.lang.instrument.Instrumentation;
 import java.util.*;
 
 final class StriderLoader implements IStriderLoader {
-    static final String LOADER_VERSION = "0.0.1";
+    static final String LOADER_VERSION = "0.0.2-pre";
 
     private final Instrumentation instrumentation;
 

@@ -1,11 +1,11 @@
-package dev.nozyx.strider.loader;
+package dev.nozyx.strider.loader.impl;
 
 import com.vdurmont.semver4j.Semver;
 import dev.nozyx.strider.loader.api.*;
-import dev.nozyx.strider.loader.exceptions.DependencyException;
-import dev.nozyx.strider.loader.exceptions.DuplicateModIdException;
-import dev.nozyx.strider.loader.exceptions.ReservedModIdException;
-import dev.nozyx.strider.loader.wrappers.LoaderWrapper;
+import dev.nozyx.strider.loader.impl.exceptions.DependencyException;
+import dev.nozyx.strider.loader.impl.exceptions.DuplicateModIdException;
+import dev.nozyx.strider.loader.impl.exceptions.ReservedModIdException;
+import dev.nozyx.strider.loader.impl.wrappers.LoaderWrapper;
 
 import java.io.*;
 import java.lang.instrument.Instrumentation;
@@ -44,7 +44,7 @@ final class ModManager {
             ModInfo info = mod.getInfo();
 
             info.getDependencies().forEach((depId, depVersionRange) -> {
-                if (depId.equals("minecraft") || depId.equals("striderloader")) return;
+                if (depId.equals("minecraft") || depId.equals("striderloader") || depId.equals("java")) return;
                 if (depId.equals(modId)) throw new DependencyException("Mod '" + modId + "' cannot depend on itself");
                 if (!modMap.containsKey(depId)) throw new DependencyException("Missing dependency: " + depId + " for " + modId);
 
@@ -55,6 +55,7 @@ final class ModManager {
 
             String mcVersion = info.getDependencies().get("minecraft");
             String loaderVersion = info.getDependencies().get("striderloader");
+            String javaVersion = info.getDependencies().get("java");
 
             if (mcVersion != null) {
                 Semver semverMinecraftVersion = new Semver(loader.getMinecraftVersion(), Semver.SemverType.NPM);
@@ -64,6 +65,11 @@ final class ModManager {
             if (loaderVersion != null) {
                 Semver semverStriderLoaderVersion = new Semver(loader.getLoaderVersion(), Semver.SemverType.NPM);
                 if (!semverStriderLoaderVersion.satisfies(loaderVersion)) throw new DependencyException("Mod requires StriderLoader version in range '" + loaderVersion + "' but the current version is " + loader.getLoaderVersion());
+            }
+
+            if (javaVersion != null) {
+                Semver semverJavaVersion = new Semver(Utils.getJavaMajorVersion(), Semver.SemverType.NPM);
+                if (!semverJavaVersion.satisfies(javaVersion)) throw new DependencyException("Mod requires Java version in range '" + javaVersion + "' but the current version is " + Utils.getJavaMajorVersion());
             }
 
             temp.remove(modId);
@@ -89,7 +95,7 @@ final class ModManager {
                 String json = new String(baos.toByteArray(), StandardCharsets.UTF_8);
                 ModInfo info = ModInfo.parseJSON(json);
 
-                if (info.getId().equals("minecraft") || info.getId().equals("striderloader")) throw new ReservedModIdException(info.getId());
+                if (info.getId().equals("minecraft") || info.getId().equals("striderloader") || info.getId().equals("java")) throw new ReservedModIdException(info.getId());
                 if (modMap.containsKey(info.getId())) throw new DuplicateModIdException(info.getId());
 
                 loader.getLogger().info("ID: {}", info.getId());

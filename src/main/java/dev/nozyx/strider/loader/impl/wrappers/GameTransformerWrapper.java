@@ -1,4 +1,4 @@
-package dev.nozyx.strider.loader.wrappers;
+package dev.nozyx.strider.loader.impl.wrappers;
 
 import dev.nozyx.strider.loader.api.*;
 

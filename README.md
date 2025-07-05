@@ -6,8 +6,9 @@
   </a>
 </p>
 
-**StriderLoader** is a lightweight, modular mod loader for Minecraft, designed to be simple, fast, and flexible.  
-It supports modular mod loading, game code transformation (using ByteBuddy in the backend), and a minimal permission system to keep mods in check.
+**StriderLoader** is a lightweight and modular injection loader for Minecraft, designed to be used *alongside* more complex mod loaders like Forge or NeoForge.  
+While these loaders are great for building large, feature-rich mods, they don't natively support deep, low-level code injections in a minimal and flexible way.  
+**StriderLoader** fills this gap by enabling powerful bytecode transformations with minimal setup.
 
 ## Features
 
@@ -35,7 +36,7 @@ To use **StriderLoader** in Minecraft, you have two options:
 
   `-javaagent:<path to striderloader-all>=mcVersion=<minecraft version>,mcSide=client|server`
 
-In both methods, **StriderLoader** is compatible with most other mod loaders (tested with Fabric, NeoForge, and Forge).  
+In both methods, **StriderLoader** is compatible with most other mod loaders (tested with NeoForge and Forge).  
 The installer allows you to select which version in the launcher to base **StriderLoader** on—it creates a new launcher version instead of modifying the original one (The original one needs to be kept in the launcher).
 
 ## StriderLoader Agent Options Specification
@@ -51,10 +52,10 @@ When using **StriderLoader** as a Java Agent, configure it with these options (k
 - **(OPTIONAL)** `nogui=true|false`  
   Disables or enables the startup UI (default: `false`).
 
-## Getting Started
+## SOON: Getting Started
 
 For usage and API examples, check out the example mod:  
-👉 [StriderLoader Example Mod](https://github.com/nozyx12/striderloader-examplemod) *(replace with the real URL)*
+👉 [StriderLoader Example Mod](https://github.com/nozyx12/striderloader-examplemod)
 
 ## License
 

@@ -1,4 +1,4 @@
-package dev.nozyx.strider.loader.exceptions;
+package dev.nozyx.strider.loader.impl.exceptions;
 
 import dev.nozyx.strider.loader.api.StriderLoaderInternal;
 

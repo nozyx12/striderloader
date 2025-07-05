@@ -1,4 +1,4 @@
-package dev.nozyx.strider.loader;
+package dev.nozyx.strider.loader.impl;
 
 import dev.nozyx.strider.loader.api.*;
 import org.apache.logging.log4j.LogManager;
@@ -9,7 +9,7 @@ import java.lang.instrument.Instrumentation;
 import java.util.*;
 
 final class StriderLoader implements IStriderLoader {
-    static final String LOADER_VERSION = "0.0.2-pre";
+    static final String LOADER_VERSION = "0.0.2";
 
     private final Instrumentation instrumentation;
 
@@ -150,8 +150,6 @@ final class StriderLoader implements IStriderLoader {
         minecraftVersion = mcVersion;
         minecraftSide = mcSide;
         gameTransformer = new GameTransformer(instrumentation);
-
-        DefaultTransformations.registerTransformations(mcSide, gameTransformer);
     }
 
     @Override

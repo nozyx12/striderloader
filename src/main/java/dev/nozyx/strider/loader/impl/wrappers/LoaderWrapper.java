@@ -1,4 +1,4 @@
-package dev.nozyx.strider.loader.wrappers;
+package dev.nozyx.strider.loader.impl.wrappers;
 
 import dev.nozyx.strider.loader.api.*;
 import org.apache.logging.log4j.Logger;

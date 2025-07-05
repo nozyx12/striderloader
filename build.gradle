@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "dev.nozyx.strider"
-version = "0.0.2-pre"
+version = "0.0.2"
 
 repositories {
     mavenCentral()
@@ -68,7 +68,7 @@ jar {
                 "Specification-Title": "StriderLoader API",
                 "Specification-Version": version,
                 "Specification-Vendor": "nozyx12",
-                "Premain-Class": "dev.nozyx.strider.loader.StriderAgent",
+                "Premain-Class": "dev.nozyx.strider.loader.impl.StriderAgent",
                 "Can-Redefine-Classes": "true",
                 "Can-Retransform-Classes": "true"
         )

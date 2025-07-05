@@ -1,4 +1,4 @@
-package dev.nozyx.strider.loader;
+package dev.nozyx.strider.loader.impl;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
